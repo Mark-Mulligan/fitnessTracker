@@ -5,7 +5,7 @@ const path = require("path");
 
 const app = express();
 
-app.use(logger("dev"));
+//app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -26,6 +26,8 @@ app.get('/stats', (req, res) => {
 app.get('/exercise', (req, res) => {
   res.sendFile(path.join(__dirname, "public/exercise.html"));
 });
+
+app.use(require("./routes/api.js"));
 
 app.listen(process.env.PORT || 3000, () => {
   console.log('server has been started on port 3000');
